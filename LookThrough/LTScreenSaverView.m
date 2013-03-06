@@ -6,9 +6,12 @@
  * See LICENSE
  */
 
-#import "LookThroughView.h"
+#import "LTScreenSaverView.h"
+#import "LTScreenCaptureHelper.h"
 
-@implementation LookThroughView
+@implementation LTScreenSaverView {
+    LTScreenCaptureHelper *_screenCaptureHelper;
+}
 
 + (BOOL)performGammaFade {
     return NO;
@@ -18,6 +21,7 @@
     self = [super initWithFrame:frame isPreview:isPreview];
     if (self) {
         [self setAnimationTimeInterval:-1];
+        _screenCaptureHelper = [[LTScreenCaptureHelper alloc] init];
     }
 
     return self;
@@ -25,11 +29,9 @@
 
 - (void)drawRect:(NSRect)rect {
     if (![self isPreview]) {
-        NSWindow *window = [self window];
-
-        [window setBackgroundColor:[NSColor clearColor]];
-        [window setAlphaValue:0];
+        [_screenCaptureHelper screenAsImage];
     }
 }
 
 @end
+

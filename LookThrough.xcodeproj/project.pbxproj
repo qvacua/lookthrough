@@ -7,13 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1929B1C3CD5B2C8C7630BCD0 /* LTScreenCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B655E7915B2E05A1DB81 /* LTScreenCaptureHelper.m */; };
+		1929B572D0345EDE9B9385CA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929BC56908A4AF94B1E7CA0 /* CoreGraphics.framework */; };
+		1929BBAD38402196EC88F913 /* LTScreenCaptureHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1929BAAC3C756846D7E9AC58 /* LTScreenCaptureHelper.h */; };
 		4B3EB48016E7B5EF00374A8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3EB47F16E7B5EF00374A8D /* Cocoa.framework */; };
 		4B3EB48216E7B5EF00374A8D /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3EB48116E7B5EF00374A8D /* ScreenSaver.framework */; };
 		4B3EB48C16E7B5EF00374A8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B3EB48A16E7B5EF00374A8D /* InfoPlist.strings */; };
-		4B3EB49016E7B5EF00374A8D /* LookThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B3EB48F16E7B5EF00374A8D /* LookThroughView.m */; };
+		4B3EB49016E7B5EF00374A8D /* LTScreenSaverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B3EB48F16E7B5EF00374A8D /* LTScreenSaverView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1929B655E7915B2E05A1DB81 /* LTScreenCaptureHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTScreenCaptureHelper.m; sourceTree = "<group>"; };
+		1929BAAC3C756846D7E9AC58 /* LTScreenCaptureHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTScreenCaptureHelper.h; sourceTree = "<group>"; };
+		1929BC56908A4AF94B1E7CA0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4B3EB47C16E7B5EF00374A8D /* LookThrough.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LookThrough.saver; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3EB47F16E7B5EF00374A8D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		4B3EB48116E7B5EF00374A8D /* ScreenSaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenSaver.framework; path = System/Library/Frameworks/ScreenSaver.framework; sourceTree = SDKROOT; };
@@ -23,8 +29,8 @@
 		4B3EB48916E7B5EF00374A8D /* LookThrough-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LookThrough-Info.plist"; sourceTree = "<group>"; };
 		4B3EB48B16E7B5EF00374A8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B3EB48D16E7B5EF00374A8D /* LookThrough-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LookThrough-Prefix.pch"; sourceTree = "<group>"; };
-		4B3EB48E16E7B5EF00374A8D /* LookThroughView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LookThroughView.h; sourceTree = "<group>"; };
-		4B3EB48F16E7B5EF00374A8D /* LookThroughView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LookThroughView.m; sourceTree = "<group>"; };
+		4B3EB48E16E7B5EF00374A8D /* LTScreenSaverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTScreenSaverView.h; sourceTree = "<group>"; };
+		4B3EB48F16E7B5EF00374A8D /* LTScreenSaverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTScreenSaverView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +40,7 @@
 			files = (
 				4B3EB48016E7B5EF00374A8D /* Cocoa.framework in Frameworks */,
 				4B3EB48216E7B5EF00374A8D /* ScreenSaver.framework in Frameworks */,
+				1929B572D0345EDE9B9385CA /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +70,7 @@
 				4B3EB47F16E7B5EF00374A8D /* Cocoa.framework */,
 				4B3EB48116E7B5EF00374A8D /* ScreenSaver.framework */,
 				4B3EB48316E7B5EF00374A8D /* Other Frameworks */,
+				1929BC56908A4AF94B1E7CA0 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -80,9 +88,11 @@
 		4B3EB48716E7B5EF00374A8D /* LookThrough */ = {
 			isa = PBXGroup;
 			children = (
-				4B3EB48E16E7B5EF00374A8D /* LookThroughView.h */,
-				4B3EB48F16E7B5EF00374A8D /* LookThroughView.m */,
+				4B3EB48E16E7B5EF00374A8D /* LTScreenSaverView.h */,
+				4B3EB48F16E7B5EF00374A8D /* LTScreenSaverView.m */,
 				4B3EB48816E7B5EF00374A8D /* Supporting Files */,
+				1929B655E7915B2E05A1DB81 /* LTScreenCaptureHelper.m */,
+				1929BAAC3C756846D7E9AC58 /* LTScreenCaptureHelper.h */,
 			);
 			path = LookThrough;
 			sourceTree = "<group>";
@@ -104,6 +114,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1929BBAD38402196EC88F913 /* LTScreenCaptureHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +192,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B3EB49016E7B5EF00374A8D /* LookThroughView.m in Sources */,
+				4B3EB49016E7B5EF00374A8D /* LTScreenSaverView.m in Sources */,
+				1929B1C3CD5B2C8C7630BCD0 /* LTScreenCaptureHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,7 +227,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -229,6 +241,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -248,13 +261,14 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
@@ -303,6 +317,7 @@
 				4B3EB49516E7B5EF00374A8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

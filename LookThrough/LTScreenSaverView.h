@@ -8,6 +8,6 @@
 
 #import <ScreenSaver/ScreenSaver.h>
 
-@interface LookThroughView : ScreenSaverView
+@interface LTScreenSaverView : ScreenSaverView
 
 @end
