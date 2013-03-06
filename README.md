@@ -1,6 +1,6 @@
 # LookThrough
 
-<http://qvacua.com>
+Download: <http://qvacua.com/files/LookThrough-0.0.0.zip>
 
 ## About
 LookThrough is a trivial transparent screensaver for OS X. Thus, it is only useful, when you want to lock your Mac, but want to keep track of things on the screen.
