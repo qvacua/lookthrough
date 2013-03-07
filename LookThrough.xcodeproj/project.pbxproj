@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1929B1C3CD5B2C8C7630BCD0 /* LTScreenCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B655E7915B2E05A1DB81 /* LTScreenCaptureHelper.m */; };
 		1929B572D0345EDE9B9385CA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929BC56908A4AF94B1E7CA0 /* CoreGraphics.framework */; };
-		1929BB1A7AD4058A3B8461AF /* LTLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 1929B7EE4CF499EAF4E6844A /* LTLog.h */; };
 		1929BBAD38402196EC88F913 /* LTScreenCaptureHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1929BAAC3C756846D7E9AC58 /* LTScreenCaptureHelper.h */; };
 		4B3EB48016E7B5EF00374A8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3EB47F16E7B5EF00374A8D /* Cocoa.framework */; };
 		4B3EB48216E7B5EF00374A8D /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3EB48116E7B5EF00374A8D /* ScreenSaver.framework */; };
@@ -19,7 +18,6 @@
 
 /* Begin PBXFileReference section */
 		1929B655E7915B2E05A1DB81 /* LTScreenCaptureHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTScreenCaptureHelper.m; sourceTree = "<group>"; };
-		1929B7EE4CF499EAF4E6844A /* LTLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTLog.h; sourceTree = "<group>"; };
 		1929BAAC3C756846D7E9AC58 /* LTScreenCaptureHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTScreenCaptureHelper.h; sourceTree = "<group>"; };
 		1929BC56908A4AF94B1E7CA0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4B3EB47C16E7B5EF00374A8D /* LookThrough.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LookThrough.saver; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,7 +93,6 @@
 				4B3EB48816E7B5EF00374A8D /* Supporting Files */,
 				1929B655E7915B2E05A1DB81 /* LTScreenCaptureHelper.m */,
 				1929BAAC3C756846D7E9AC58 /* LTScreenCaptureHelper.h */,
-				1929B7EE4CF499EAF4E6844A /* LTLog.h */,
 			);
 			path = LookThrough;
 			sourceTree = "<group>";
@@ -118,7 +115,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1929BBAD38402196EC88F913 /* LTScreenCaptureHelper.h in Headers */,
-				1929BB1A7AD4058A3B8461AF /* LTLog.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

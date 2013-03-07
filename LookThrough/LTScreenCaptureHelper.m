@@ -7,7 +7,6 @@
  */
 
 #import "LTScreenCaptureHelper.h"
-#import "LTLog.h"
 
 /**
 * The most of this class consists of
@@ -29,7 +28,7 @@ NSString *kWindowIDKey = @"windowID";           // Window ID
 NSString *kWindowLevelKey = @"windowLevel"; // Window Level
 NSString *kWindowOrderKey = @"windowOrder"; // The overall front-to-back ordering of the windows as returned by the window server
 
-static uint32_t ChangeBits(uint32_t currentBits, uint32_t flagsToChange, BOOL setFlags) {
+static inline uint32_t ChangeBits(uint32_t currentBits, uint32_t flagsToChange, BOOL setFlags) {
     if (setFlags) {    // Set Bits
         return currentBits | flagsToChange;
     } else {    // Clear Bits
@@ -88,10 +87,11 @@ static NSString *const qLoginWindowAppName = @"loginwindow";
 static NSString *const qScreenSaverAppName = @"ScreenSaverEngine";
 
 @implementation LTScreenCaptureHelper {
+    CGRect imageBounds;
+    CGWindowImageOption imageOptions;
+
     CGWindowListOption listOptions;
     CGWindowListOption singleWindowListOptions;
-    CGWindowImageOption imageOptions;
-    CGRect imageBounds;
 
     NSMutableArray *windowArray;
 }
@@ -100,12 +100,14 @@ static NSString *const qScreenSaverAppName = @"ScreenSaverEngine";
 - (id)init {
     self = [super init];
     if (self) {
+        imageBounds = CGRectInfinite;
         imageOptions = kCGWindowImageDefault;
+
         listOptions = ChangeBits(listOptions, kCGWindowListExcludeDesktopElements, NO);
         listOptions = ChangeBits(listOptions, kCGWindowListOptionOnScreenOnly, YES);
         singleWindowListOptions = kCGWindowListOptionOnScreenBelowWindow;
-        imageBounds = CGRectInfinite;
-        windowArray = [[NSMutableArray alloc] init];
+
+        windowArray = [[NSMutableArray alloc] initWithCapacity:6];
     }
 
     return self;
@@ -120,13 +122,14 @@ static NSString *const qScreenSaverAppName = @"ScreenSaverEngine";
 - (NSImage *)screenAsImage {
     [self updateWindowList];
 
-    log4Debug(@"window infos: %@", windowArray);
-
-    __block CGWindowID bottomIrrelevantWindowId;
+    __block CGWindowID bottomIrrelevantWindowId = 0;
     __block NSInteger maxWindowLevel = -1;
+    __block NSInteger maxWindowOrder = -1;
+
     [windowArray enumerateObjectsUsingBlock:^(NSDictionary *windowInfo, NSUInteger index, BOOL *stop) {
         NSString *appName = windowInfo[kAppNameKey];
         NSInteger windowLevel = [windowInfo[kWindowLevelKey] integerValue];
+        NSInteger windowOrder = [windowInfo[kWindowOrderKey] integerValue];
 
         NSRange loginWindowNameRange = [appName rangeOfString:qLoginWindowAppName];
         NSRange screenSaverNameRange = [appName rangeOfString:qScreenSaverAppName];
@@ -135,13 +138,11 @@ static NSString *const qScreenSaverAppName = @"ScreenSaverEngine";
             return;
         }
 
-        if (windowLevel > maxWindowLevel) {
+        if (windowLevel > maxWindowLevel || windowOrder > maxWindowOrder) {
             maxWindowLevel = windowLevel;
             bottomIrrelevantWindowId = (CGWindowID) [windowInfo[kWindowIDKey] intValue];
         }
     }];
-
-    log4Debug(@"capturing below the window id (excluded): %@", @(bottomIrrelevantWindowId));
 
     return [self everythingBelowImage:bottomIrrelevantWindowId];
 }
@@ -161,10 +162,10 @@ static NSString *const qScreenSaverAppName = @"ScreenSaverEngine";
 - (NSImage *)everythingBelowImage:(CGWindowID)windowID {
     // Create an image from the passed in windowID with the single window option selected by the user.
     CGImageRef windowImage = CGWindowListCreateImage(imageBounds, singleWindowListOptions, windowID, imageOptions);
-    NSImage *image = [[self imageFromCGImageRef:windowImage] retain];
+    NSImage *image = [self imageFromCGImageRef:windowImage];
     CGImageRelease(windowImage);
 
-    return [image autorelease];
+    return image;
 }
 
 - (NSImage *)imageFromCGImageRef:(CGImageRef)cgImage {
