@@ -7,6 +7,7 @@
  */
 
 #import "LTScreenCaptureHelper.h"
+#import "LTLog.h"
 
 /**
 * This entire class consists of code from
@@ -86,6 +87,8 @@ static void WindowListApplierFunction(const void *inputDictionary, void *context
 
 static NSString *const qLoginWindowAppName = @"loginwindow";
 
+static NSString * const qScreenSaverAppName = @"ScreenSaverEngine";
+
 @implementation LTScreenCaptureHelper {
     CGWindowListOption listOptions;
     CGWindowListOption singleWindowListOptions;
@@ -112,29 +115,35 @@ static NSString *const qLoginWindowAppName = @"loginwindow";
 
     NSLog(@"%@", windowArray);
 
-    __block CGWindowID screenSaverWindowId;
+    __block int screenSaverWindowOrder = 0;
     [windowArray enumerateObjectsUsingBlock:^(NSDictionary *windowInfo, NSUInteger index, BOOL *stop) {
-        NSRange nameRange = [windowInfo[kAppNameKey] rangeOfString:@"ScreenSaverEngine"];
-        if (nameRange.location != NSNotFound) {
-            screenSaverWindowId = (CGWindowID) [windowInfo[kWindowIDKey] intValue];
+        NSRange nameRange = [windowInfo[kAppNameKey] rangeOfString:qScreenSaverAppName];
+        int windowOrder = [windowInfo[kWindowOrderKey] intValue];
+        if (nameRange.location != NSNotFound && windowOrder >= screenSaverWindowOrder) {
+            screenSaverWindowOrder = windowOrder;
         }
     }];
 
-    NSMutableArray *winArray = [windowArray mutableCopy];
+    NSLog(@"screensaver engine order: %@", @(screenSaverWindowOrder));
+
     __block NSDictionary *loginWindowInfo;
     [windowArray enumerateObjectsUsingBlock:^(NSDictionary *windowInfo, NSUInteger index, BOOL *stop) {
         NSRange nameRange = [windowInfo[kAppNameKey] rangeOfString:qLoginWindowAppName];
-        CGWindowID windowId = (CGWindowID) [windowInfo[kWindowIDKey] intValue];
+        int windowOrder = [windowInfo[kWindowOrderKey] intValue];
 
-        if (nameRange.location != NSNotFound && windowId < screenSaverWindowId) {
+        if (nameRange.location != NSNotFound && windowOrder > screenSaverWindowOrder) {
             loginWindowInfo = windowInfo;
-            [winArray removeObject:windowInfo];
             *stop = YES;
-            NSLog(@"login: %@", windowInfo);
+
+            NSLog(@"login window info: %@", windowInfo);
         }
     }];
 
-    return [self singleWindowShotAsImage:(CGWindowID) [loginWindowInfo[kWindowIDKey] intValue]];
+    NSImage *image = [self everythingBelowImage:(CGWindowID) [loginWindowInfo[kWindowIDKey] intValue]];
+
+    [self singleWindowImage:(CGWindowID) [loginWindowInfo[kWindowIDKey] intValue]];
+
+    return image;
 }
 
 - (void)updateWindowList {
@@ -149,7 +158,16 @@ static NSString *const qLoginWindowAppName = @"loginwindow";
     CFRelease(windowList);
 }
 
-- (NSImage *)singleWindowShotAsImage:(CGWindowID)windowID {
+- (NSImage *)singleWindowImage:(CGWindowID)windowID {
+    // Create an image from the passed in windowID with the single window option selected by the user.
+    CGImageRef windowImage = CGWindowListCreateImage(imageBounds, kCGWindowListOptionIncludingWindow, windowID, imageOptions);
+    NSImage *image = [[self imageFromCGImageRef:windowImage] retain];
+    CGImageRelease(windowImage);
+
+    return [image autorelease];
+}
+
+- (NSImage *)everythingBelowImage:(CGWindowID)windowID {
     // Create an image from the passed in windowID with the single window option selected by the user.
     CGImageRef windowImage = CGWindowListCreateImage(imageBounds, singleWindowListOptions, windowID, imageOptions);
     NSImage *image = [[self imageFromCGImageRef:windowImage] retain];
