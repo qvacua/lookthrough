@@ -14,6 +14,8 @@ static NSTimeInterval const qUpdateInterval = 5;
 @implementation LTScreenSaverView {
     LTScreenCaptureHelper *_screenCaptureHelper;
     NSImageView *_imageView;
+
+    NSImage *_image;
 }
 
 - (id)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview {
@@ -25,9 +27,8 @@ static NSTimeInterval const qUpdateInterval = 5;
         [self addSubview:_imageView];
 
         if (![self isPreview]) {
-            NSImage *screenShot = [_screenCaptureHelper screenAsImage];
-            [_imageView setImage:screenShot];
-            NSLog(@"Replacing the image");
+            _image = [[_screenCaptureHelper screenAsImage] retain];
+            [_imageView setImage:_image];
         }
     }
 
@@ -38,17 +39,28 @@ static NSTimeInterval const qUpdateInterval = 5;
     [super animateOneFrame];
 
     if (![self isPreview]) {
-        NSImage *screenShot = [_screenCaptureHelper screenAsImage];
-        [_imageView setImage:screenShot];
-        NSLog(@"Replacing the image");
-        [_imageView setNeedsDisplay:YES];
+        [_image release];
+        _image = [[_screenCaptureHelper screenAsImage] retain];
+        [self setNeedsDisplay:YES];
     }
+}
 
+- (void)drawRect:(NSRect)rect {
+    [super drawRect:rect];
+
+    if (![self isPreview]) {
+        NSLog(@"%@", _image);
+        [_imageView setImage:_image];
+        NSBitmapImageRep *imgRep = [[_image representations] objectAtIndex: 0];
+        NSData *data = [imgRep representationUsingType: NSPNGFileType properties: nil];
+        [data writeToFile:[NSString stringWithFormat:@"/tmp/test-%@", [NSDate date]] atomically: NO];
+    }
 }
 
 - (void)dealloc {
     [_screenCaptureHelper release];
     [_imageView release];
+    [_image release];
 
     [super dealloc];
 }

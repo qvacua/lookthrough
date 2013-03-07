@@ -170,11 +170,6 @@ static NSString *const qScreenSaverAppName = @"ScreenSaverEngine";
 - (NSImage *)imageFromCGImageRef:(CGImageRef)cgImage {
     NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:cgImage];
 
-#ifdef DEBUG
-    NSData *data = [bitmapRep representationUsingType:NSPNGFileType properties:nil];
-    [data writeToFile:@"/tmp/LookThroughDebugImage.png" atomically:NO];
-#endif
-
     NSImage *image = [[NSImage alloc] init];
     [image addRepresentation:bitmapRep];
     [bitmapRep release];
