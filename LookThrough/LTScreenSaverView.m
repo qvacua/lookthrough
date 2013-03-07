@@ -9,7 +9,7 @@
 #import "LTScreenSaverView.h"
 #import "LTScreenCaptureHelper.h"
 
-static NSTimeInterval const qUpdateInterval = 30;
+static NSTimeInterval const qUpdateInterval = 5;
 
 @implementation LTScreenSaverView {
     LTScreenCaptureHelper *_screenCaptureHelper;
@@ -23,7 +23,12 @@ static NSTimeInterval const qUpdateInterval = 30;
         _screenCaptureHelper = [[LTScreenCaptureHelper alloc] init];
         _imageView = [[NSImageView alloc] initWithFrame:[self frame]];
         [self addSubview:_imageView];
-        [_imageView release];
+
+        if (![self isPreview]) {
+            NSImage *screenShot = [_screenCaptureHelper screenAsImage];
+            [_imageView setImage:screenShot];
+            NSLog(@"Replacing the image");
+        }
     }
 
     return self;
@@ -32,18 +37,18 @@ static NSTimeInterval const qUpdateInterval = 30;
 - (void)animateOneFrame {
     [super animateOneFrame];
 
-    [self setNeedsDisplay:YES];
-}
-
-- (void)drawRect:(NSRect)rect {
     if (![self isPreview]) {
         NSImage *screenShot = [_screenCaptureHelper screenAsImage];
         [_imageView setImage:screenShot];
+        NSLog(@"Replacing the image");
+        [_imageView setNeedsDisplay:YES];
     }
+
 }
 
 - (void)dealloc {
     [_screenCaptureHelper release];
+    [_imageView release];
 
     [super dealloc];
 }

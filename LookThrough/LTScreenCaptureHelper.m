@@ -105,9 +105,16 @@ static NSString *const qScreenSaverAppName = @"ScreenSaverEngine";
         listOptions = ChangeBits(listOptions, kCGWindowListOptionOnScreenOnly, YES);
         singleWindowListOptions = kCGWindowListOptionOnScreenBelowWindow;
         imageBounds = CGRectInfinite;
+        windowArray = [[NSMutableArray alloc] init];
     }
 
     return self;
+}
+
+- (void)dealloc {
+    [windowArray release];
+
+    [super dealloc];
 }
 
 - (NSImage *)screenAsImage {
@@ -145,7 +152,7 @@ static NSString *const qScreenSaverAppName = @"ScreenSaverEngine";
 
     // Copy the returned list, further pruned, to another list. This also adds some bookkeeping
     // information to the list as well as
-    windowArray = [NSMutableArray array];
+    [windowArray removeAllObjects];
     WindowListApplierData data = {windowArray, 0};
     CFArrayApplyFunction(windowList, CFRangeMake(0, CFArrayGetCount(windowList)), &WindowListApplierFunction, &data);
     CFRelease(windowList);
