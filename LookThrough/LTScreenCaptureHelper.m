@@ -10,9 +10,8 @@
 #import "LTLog.h"
 
 /**
-* This entire class consists of code from
+* The most of this class consists of
 * https://developer.apple.com/library/mac/#samplecode/SonOfGrab/Listings/Controller_m.html
-* with slight modifications.
 */
 
 typedef struct {
@@ -86,8 +85,7 @@ static void WindowListApplierFunction(const void *inputDictionary, void *context
 }
 
 static NSString *const qLoginWindowAppName = @"loginwindow";
-
-static NSString * const qScreenSaverAppName = @"ScreenSaverEngine";
+static NSString *const qScreenSaverAppName = @"ScreenSaverEngine";
 
 @implementation LTScreenCaptureHelper {
     CGWindowListOption listOptions;
@@ -115,36 +113,30 @@ static NSString * const qScreenSaverAppName = @"ScreenSaverEngine";
 - (NSImage *)screenAsImage {
     [self updateWindowList];
 
-    NSLog(@"%@", windowArray);
+    log4Debug(@"window infos: %@", windowArray);
 
-    __block int screenSaverWindowOrder = 0;
-    [windowArray enumerateObjectsUsingBlock:^(NSDictionary *windowInfo, NSUInteger index, BOOL *stop) {
-        NSRange nameRange = [windowInfo[kAppNameKey] rangeOfString:qScreenSaverAppName];
-        int windowOrder = [windowInfo[kWindowOrderKey] intValue];
-        if (nameRange.location != NSNotFound && windowOrder >= screenSaverWindowOrder) {
-            screenSaverWindowOrder = windowOrder;
-        }
-    }];
-
-    NSLog(@"screensaver engine order: %@", @(screenSaverWindowOrder));
-
-    NSMutableArray *resultArray = [windowArray mutableCopy];
-    __block NSDictionary *loginWindowInfo;
+    __block CGWindowID bottomIrrelevantWindowId;
+    __block NSInteger maxWindowLevel = -1;
     [windowArray enumerateObjectsUsingBlock:^(NSDictionary *windowInfo, NSUInteger index, BOOL *stop) {
         NSString *appName = windowInfo[kAppNameKey];
+        NSInteger windowLevel = [windowInfo[kWindowLevelKey] integerValue];
+
         NSRange loginWindowNameRange = [appName rangeOfString:qLoginWindowAppName];
         NSRange screenSaverNameRange = [appName rangeOfString:qScreenSaverAppName];
 
-        if (loginWindowNameRange.location != NSNotFound || screenSaverNameRange.location != NSNotFound) {
-            NSLog(@"removing: %@", windowInfo);
-            [resultArray removeObject:windowInfo];
+        if (loginWindowNameRange.location == NSNotFound && screenSaverNameRange.location == NSNotFound) {
+            return;
+        }
+
+        if (windowLevel > maxWindowLevel) {
+            maxWindowLevel = windowLevel;
+            bottomIrrelevantWindowId = (CGWindowID) [windowInfo[kWindowIDKey] intValue];
         }
     }];
 
-    NSImage *image = [self createMultiWindowShot:resultArray];
-    [resultArray release];
+    log4Debug(@"capturing below the window id (excluded): %@", @(bottomIrrelevantWindowId));
 
-    return image;
+    return [self everythingBelowImage:bottomIrrelevantWindowId];
 }
 
 - (void)updateWindowList {
@@ -159,15 +151,6 @@ static NSString * const qScreenSaverAppName = @"ScreenSaverEngine";
     CFRelease(windowList);
 }
 
-- (NSImage *)singleWindowImage:(CGWindowID)windowID {
-    // Create an image from the passed in windowID with the single window option selected by the user.
-    CGImageRef windowImage = CGWindowListCreateImage(imageBounds, kCGWindowListOptionIncludingWindow, windowID, imageOptions);
-    NSImage *image = [[self imageFromCGImageRef:windowImage] retain];
-    CGImageRelease(windowImage);
-
-    return [image autorelease];
-}
-
 - (NSImage *)everythingBelowImage:(CGWindowID)windowID {
     // Create an image from the passed in windowID with the single window option selected by the user.
     CGImageRef windowImage = CGWindowListCreateImage(imageBounds, singleWindowListOptions, windowID, imageOptions);
@@ -177,50 +160,13 @@ static NSString * const qScreenSaverAppName = @"ScreenSaverEngine";
     return [image autorelease];
 }
 
--(CFArrayRef)newWindowListFromSelection:(NSArray*)selection
-{
-	// Create a sort descriptor array. It consists of a single descriptor that sorts based on the kWindowOrderKey in ascending order
-	NSArray * sortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:kWindowOrderKey ascending:YES] autorelease]];
-
-	// Next sort the selection based on that sort descriptor array
-	NSArray * sortedSelection = [selection sortedArrayUsingDescriptors:sortDescriptors];
-
-	// Now we Collect the CGWindowIDs from the sorted selection
-	CGWindowID *windowIDs = calloc([sortedSelection count], sizeof(CGWindowID));
-	int i = 0;
-	for(NSMutableDictionary *entry in sortedSelection)
-	{
-		windowIDs[i++] = [[entry objectForKey:kWindowIDKey] unsignedIntValue];
-	}
-	// CGWindowListCreateImageFromArray expect a CFArray of *CGWindowID*, not CGWindowID wrapped in a CF/NSNumber
-	// Hence we typecast our array above (to avoid the compiler warning) and use NULL CFArray callbacks
-	// (because CGWindowID isn't a CF type) to avoid retain/release.
-	CFArrayRef windowIDsArray = CFArrayCreate(kCFAllocatorDefault, (const void**)windowIDs, [sortedSelection count], NULL);
-	free(windowIDs);
-	
-	// And send our new array on it's merry way
-	return windowIDsArray;
-}
-
--(NSImage *)createMultiWindowShot:(NSArray*)selection {
-	// Get the correctly sorted list of window IDs. This is a CFArrayRef because we need to put integers in the array
-	// instead of CFTypes or NSObjects.
-	CFArrayRef windowIDs = [self newWindowListFromSelection:selection];
-
-	// And finally create the window image and set it as our output image.
-	CGImageRef windowImage = CGWindowListCreateImageFromArray(imageBounds, windowIDs, imageOptions);
-	CFRelease(windowIDs);
-    NSImage *image = [self imageFromCGImageRef:windowImage];
-	CGImageRelease(windowImage);
-
-    return image;
-}
-
 - (NSImage *)imageFromCGImageRef:(CGImageRef)cgImage {
     NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:cgImage];
 
+#ifdef DEBUG
     NSData *data = [bitmapRep representationUsingType:NSPNGFileType properties:nil];
-    [data writeToFile:@"/tmp/test.png" atomically:NO];
+    [data writeToFile:@"/tmp/LookThroughDebugImage.png" atomically:NO];
+#endif
 
     NSImage *image = [[NSImage alloc] init];
     [image addRepresentation:bitmapRep];

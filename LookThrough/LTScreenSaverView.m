@@ -9,15 +9,11 @@
 #import "LTScreenSaverView.h"
 #import "LTScreenCaptureHelper.h"
 
-static NSTimeInterval const qUpdateInterval = 5;
+static NSTimeInterval const qUpdateInterval = 30;
 
 @implementation LTScreenSaverView {
     LTScreenCaptureHelper *_screenCaptureHelper;
     NSImageView *_imageView;
-}
-
-+ (BOOL)performGammaFade {
-    return NO;
 }
 
 - (id)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview {
