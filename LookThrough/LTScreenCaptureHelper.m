@@ -103,6 +103,8 @@ static NSString * const qScreenSaverAppName = @"ScreenSaverEngine";
     self = [super init];
     if (self) {
         imageOptions = kCGWindowImageDefault;
+        listOptions = ChangeBits(listOptions, kCGWindowListExcludeDesktopElements, NO);
+        listOptions = ChangeBits(listOptions, kCGWindowListOptionOnScreenOnly, YES);
         singleWindowListOptions = kCGWindowListOptionOnScreenBelowWindow;
         imageBounds = CGRectInfinite;
     }
@@ -126,22 +128,21 @@ static NSString * const qScreenSaverAppName = @"ScreenSaverEngine";
 
     NSLog(@"screensaver engine order: %@", @(screenSaverWindowOrder));
 
+    NSMutableArray *resultArray = [windowArray mutableCopy];
     __block NSDictionary *loginWindowInfo;
     [windowArray enumerateObjectsUsingBlock:^(NSDictionary *windowInfo, NSUInteger index, BOOL *stop) {
-        NSRange nameRange = [windowInfo[kAppNameKey] rangeOfString:qLoginWindowAppName];
-        int windowOrder = [windowInfo[kWindowOrderKey] intValue];
+        NSString *appName = windowInfo[kAppNameKey];
+        NSRange loginWindowNameRange = [appName rangeOfString:qLoginWindowAppName];
+        NSRange screenSaverNameRange = [appName rangeOfString:qScreenSaverAppName];
 
-        if (nameRange.location != NSNotFound && windowOrder > screenSaverWindowOrder) {
-            loginWindowInfo = windowInfo;
-            *stop = YES;
-
-            NSLog(@"login window info: %@", windowInfo);
+        if (loginWindowNameRange.location != NSNotFound || screenSaverNameRange.location != NSNotFound) {
+            NSLog(@"removing: %@", windowInfo);
+            [resultArray removeObject:windowInfo];
         }
     }];
 
-    NSImage *image = [self everythingBelowImage:(CGWindowID) [loginWindowInfo[kWindowIDKey] intValue]];
-
-    [self singleWindowImage:(CGWindowID) [loginWindowInfo[kWindowIDKey] intValue]];
+    NSImage *image = [self createMultiWindowShot:resultArray];
+    [resultArray release];
 
     return image;
 }
@@ -174,6 +175,45 @@ static NSString * const qScreenSaverAppName = @"ScreenSaverEngine";
     CGImageRelease(windowImage);
 
     return [image autorelease];
+}
+
+-(CFArrayRef)newWindowListFromSelection:(NSArray*)selection
+{
+	// Create a sort descriptor array. It consists of a single descriptor that sorts based on the kWindowOrderKey in ascending order
+	NSArray * sortDescriptors = [NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:kWindowOrderKey ascending:YES] autorelease]];
+
+	// Next sort the selection based on that sort descriptor array
+	NSArray * sortedSelection = [selection sortedArrayUsingDescriptors:sortDescriptors];
+
+	// Now we Collect the CGWindowIDs from the sorted selection
+	CGWindowID *windowIDs = calloc([sortedSelection count], sizeof(CGWindowID));
+	int i = 0;
+	for(NSMutableDictionary *entry in sortedSelection)
+	{
+		windowIDs[i++] = [[entry objectForKey:kWindowIDKey] unsignedIntValue];
+	}
+	// CGWindowListCreateImageFromArray expect a CFArray of *CGWindowID*, not CGWindowID wrapped in a CF/NSNumber
+	// Hence we typecast our array above (to avoid the compiler warning) and use NULL CFArray callbacks
+	// (because CGWindowID isn't a CF type) to avoid retain/release.
+	CFArrayRef windowIDsArray = CFArrayCreate(kCFAllocatorDefault, (const void**)windowIDs, [sortedSelection count], NULL);
+	free(windowIDs);
+	
+	// And send our new array on it's merry way
+	return windowIDsArray;
+}
+
+-(NSImage *)createMultiWindowShot:(NSArray*)selection {
+	// Get the correctly sorted list of window IDs. This is a CFArrayRef because we need to put integers in the array
+	// instead of CFTypes or NSObjects.
+	CFArrayRef windowIDs = [self newWindowListFromSelection:selection];
+
+	// And finally create the window image and set it as our output image.
+	CGImageRef windowImage = CGWindowListCreateImageFromArray(imageBounds, windowIDs, imageOptions);
+	CFRelease(windowIDs);
+    NSImage *image = [self imageFromCGImageRef:windowImage];
+	CGImageRelease(windowImage);
+
+    return image;
 }
 
 - (NSImage *)imageFromCGImageRef:(CGImageRef)cgImage {
