@@ -9,48 +9,49 @@
 #import "LTScreenSaverView.h"
 #import "LTScreenCaptureHelper.h"
 
+
 static NSTimeInterval const qUpdateInterval = 5;
 
 @implementation LTScreenSaverView {
-    LTScreenCaptureHelper *_screenCaptureHelper;
-    NSImageView *_imageView;
+  LTScreenCaptureHelper *_screenCaptureHelper;
+  NSImageView *_imageView;
 }
 
 - (id)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview {
-    self = [super initWithFrame:frame isPreview:isPreview];
-    if (self) {
-        [self setAnimationTimeInterval:qUpdateInterval];
+  self = [super initWithFrame:frame isPreview:isPreview];
+  if (self) {
+    [self setAnimationTimeInterval:qUpdateInterval];
 
-        _screenCaptureHelper = [[LTScreenCaptureHelper alloc] init];
+    _screenCaptureHelper = [[LTScreenCaptureHelper alloc] init];
 
-        _imageView = [[NSImageView alloc] initWithFrame:[self frame]];
-        [self addSubview:_imageView];
+    _imageView = [[NSImageView alloc] initWithFrame:[self frame]];
+    [self addSubview:_imageView];
 
-        [self updateScreenshot];
-    }
+    [self updateScreenshot];
+  }
 
-    return self;
+  return self;
 }
 
 - (void)updateScreenshot {
-    if ([self isPreview]) {
-        return;
-    }
+  if ([self isPreview]) {
+    return;
+  }
 
-    [_imageView setImage:[_screenCaptureHelper screenAsImage]];
+  [_imageView setImage:[_screenCaptureHelper screenAsImage]];
 }
 
 - (void)animateOneFrame {
-    [super animateOneFrame];
+  [super animateOneFrame];
 
-    [self updateScreenshot];
+  [self updateScreenshot];
 }
 
 - (void)dealloc {
-    [_screenCaptureHelper release];
-    [_imageView release];
+  [_screenCaptureHelper release];
+  [_imageView release];
 
-    [super dealloc];
+  [super dealloc];
 }
 
 @end

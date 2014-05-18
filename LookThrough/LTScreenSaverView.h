@@ -8,6 +8,7 @@
 
 #import <ScreenSaver/ScreenSaver.h>
 
+
 @interface LTScreenSaverView : ScreenSaverView
 
 @end

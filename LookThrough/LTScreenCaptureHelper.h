@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface LTScreenCaptureHelper : NSObject
+
 - (NSImage *)screenAsImage;
 @end
