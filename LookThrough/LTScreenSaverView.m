@@ -12,45 +12,32 @@
 
 static NSTimeInterval const qUpdateInterval = 5;
 
-@implementation LTScreenSaverView {
-  LTScreenCaptureHelper *_screenCaptureHelper;
-  NSImageView *_imageView;
-}
+
+@implementation LTScreenSaverView
 
 - (id)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview {
   self = [super initWithFrame:frame isPreview:isPreview];
-  if (self) {
-    [self setAnimationTimeInterval:qUpdateInterval];
-
-    _screenCaptureHelper = [[LTScreenCaptureHelper alloc] init];
-
-    _imageView = [[NSImageView alloc] initWithFrame:[self frame]];
-    [self addSubview:_imageView];
-
-    [self updateScreenshot];
+  if (!self) {
+    return nil;
   }
+
+  self.animationTimeInterval = qUpdateInterval;
 
   return self;
 }
 
-- (void)updateScreenshot {
-  if ([self isPreview]) {
-    return;
-  }
+- (void)drawRect:(NSRect)dirtyRect {
+  NSImage *image = [LTScreenCaptureHelper defaultHelper].screenAsImage;
+  NSRect screenRect = self.window.screen.frame;
 
-  [_imageView setImage:[_screenCaptureHelper screenAsImage]];
+  [image drawAtPoint:dirtyRect.origin fromRect:screenRect operation:NSCompositeSourceOver fraction:1];
 }
 
 - (void)animateOneFrame {
-  [super animateOneFrame];
-
-  [self updateScreenshot];
+  self.needsDisplay = YES;
 }
 
 - (void)dealloc {
-  [_screenCaptureHelper release];
-  [_imageView release];
-
   [super dealloc];
 }
 

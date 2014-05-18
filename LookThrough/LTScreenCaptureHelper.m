@@ -178,4 +178,16 @@ static NSString *const qScreenSaverAppName = @"ScreenSaverEngine";
   return [image autorelease];
 }
 
++ (LTScreenCaptureHelper *)defaultHelper {
+  static LTScreenCaptureHelper *_instance = nil;
+
+  @synchronized (self) {
+    if (_instance == nil) {
+      _instance = [[self alloc] init];
+    }
+  }
+
+  return _instance;
+}
+
 @end

@@ -12,4 +12,7 @@
 @interface LTScreenCaptureHelper : NSObject
 
 - (NSImage *)screenAsImage;
+
++ (LTScreenCaptureHelper *)defaultHelper;
+
 @end

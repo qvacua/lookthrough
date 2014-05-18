@@ -7,12 +7,16 @@
 //
 
 #import "AppDelegate.h"
+#import "LTScreenCaptureHelper.h"
 
-@implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
-    // Insert code here to initialize your application
+@implementation AppDelegate {
+  LTScreenCaptureHelper *_helper;
+}
+
+- (IBAction)updateScreenshot:(id)sender {
+  NSImage *image = [LTScreenCaptureHelper defaultHelper].screenAsImage;
+  _imageView.image = image;
 }
 
 @end
