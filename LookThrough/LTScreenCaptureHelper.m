@@ -53,8 +53,7 @@ static void WindowListApplierFunction(const void *inputDictionary, void *context
       // PID is required so we assume it's present.
       NSString *nameAndPID = [NSString stringWithFormat:@"%@ (%@)", applicationName, [entry objectForKey:(id) kCGWindowOwnerPID]];
       [outputEntry setObject:nameAndPID forKey:kAppNameKey];
-    }
-    else {
+    } else {
       // The application name was not provided, so we use a fake application name to designate this.
       // PID is required so we assume it's present.
       NSString *nameAndPID = [NSString stringWithFormat:@"((unknown)) (%@)", [entry objectForKey:(id) kCGWindowOwnerPID]];

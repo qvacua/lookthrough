@@ -10,6 +10,15 @@
 		1929B1C3CD5B2C8C7630BCD0 /* LTScreenCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B655E7915B2E05A1DB81 /* LTScreenCaptureHelper.m */; };
 		1929B572D0345EDE9B9385CA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929BC56908A4AF94B1E7CA0 /* CoreGraphics.framework */; };
 		1929BBAD38402196EC88F913 /* LTScreenCaptureHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1929BAAC3C756846D7E9AC58 /* LTScreenCaptureHelper.h */; };
+		4B12D07219289BC600523BAF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3EB47F16E7B5EF00374A8D /* Cocoa.framework */; };
+		4B12D07819289BC600523BAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B12D07619289BC600523BAF /* InfoPlist.strings */; };
+		4B12D07A19289BC600523BAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B12D07919289BC600523BAF /* main.m */; };
+		4B12D07E19289BC600523BAF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4B12D07C19289BC600523BAF /* Credits.rtf */; };
+		4B12D08119289BC600523BAF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B12D08019289BC600523BAF /* AppDelegate.m */; };
+		4B12D08419289BC600523BAF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B12D08219289BC600523BAF /* MainMenu.xib */; };
+		4B12D08619289BC600523BAF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B12D08519289BC600523BAF /* Images.xcassets */; };
+		4B12D09F19289C0300523BAF /* LTScreenCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B655E7915B2E05A1DB81 /* LTScreenCaptureHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4B12D0A119289C0B00523BAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929BC56908A4AF94B1E7CA0 /* CoreGraphics.framework */; };
 		4B3EB48016E7B5EF00374A8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3EB47F16E7B5EF00374A8D /* Cocoa.framework */; };
 		4B3EB48216E7B5EF00374A8D /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3EB48116E7B5EF00374A8D /* ScreenSaver.framework */; };
 		4B3EB48C16E7B5EF00374A8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B3EB48A16E7B5EF00374A8D /* InfoPlist.strings */; };
@@ -20,6 +29,17 @@
 		1929B655E7915B2E05A1DB81 /* LTScreenCaptureHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTScreenCaptureHelper.m; sourceTree = "<group>"; };
 		1929BAAC3C756846D7E9AC58 /* LTScreenCaptureHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTScreenCaptureHelper.h; sourceTree = "<group>"; };
 		1929BC56908A4AF94B1E7CA0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4B12D07119289BC600523BAF /* LookThroughProxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LookThroughProxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B12D07519289BC600523BAF /* LookThroughProxy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LookThroughProxy-Info.plist"; sourceTree = "<group>"; };
+		4B12D07719289BC600523BAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4B12D07919289BC600523BAF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4B12D07B19289BC600523BAF /* LookThroughProxy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LookThroughProxy-Prefix.pch"; sourceTree = "<group>"; };
+		4B12D07D19289BC600523BAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		4B12D07F19289BC600523BAF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4B12D08019289BC600523BAF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4B12D08319289BC600523BAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		4B12D08519289BC600523BAF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4B12D08C19289BC600523BAF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		4B3EB47C16E7B5EF00374A8D /* LookThrough.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LookThrough.saver; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B3EB47F16E7B5EF00374A8D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		4B3EB48116E7B5EF00374A8D /* ScreenSaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenSaver.framework; path = System/Library/Frameworks/ScreenSaver.framework; sourceTree = SDKROOT; };
@@ -34,6 +54,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4B12D06E19289BC600523BAF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B12D0A119289C0B00523BAF /* CoreGraphics.framework in Frameworks */,
+				4B12D07219289BC600523BAF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B3EB47716E7B5EF00374A8D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -47,10 +76,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B12D07319289BC600523BAF /* LookThroughProxy */ = {
+			isa = PBXGroup;
+			children = (
+				4B12D07F19289BC600523BAF /* AppDelegate.h */,
+				4B12D08019289BC600523BAF /* AppDelegate.m */,
+				4B12D08219289BC600523BAF /* MainMenu.xib */,
+				4B12D08519289BC600523BAF /* Images.xcassets */,
+				4B12D07419289BC600523BAF /* Supporting Files */,
+			);
+			path = LookThroughProxy;
+			sourceTree = "<group>";
+		};
+		4B12D07419289BC600523BAF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4B12D07519289BC600523BAF /* LookThroughProxy-Info.plist */,
+				4B12D07619289BC600523BAF /* InfoPlist.strings */,
+				4B12D07919289BC600523BAF /* main.m */,
+				4B12D07B19289BC600523BAF /* LookThroughProxy-Prefix.pch */,
+				4B12D07C19289BC600523BAF /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		4B3EB47116E7B5EF00374A8D = {
 			isa = PBXGroup;
 			children = (
 				4B3EB48716E7B5EF00374A8D /* LookThrough */,
+				4B12D07319289BC600523BAF /* LookThroughProxy */,
 				4B3EB47E16E7B5EF00374A8D /* Frameworks */,
 				4B3EB47D16E7B5EF00374A8D /* Products */,
 			);
@@ -60,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				4B3EB47C16E7B5EF00374A8D /* LookThrough.saver */,
+				4B12D07119289BC600523BAF /* LookThroughProxy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,6 +124,7 @@
 			children = (
 				4B3EB47F16E7B5EF00374A8D /* Cocoa.framework */,
 				4B3EB48116E7B5EF00374A8D /* ScreenSaver.framework */,
+				4B12D08C19289BC600523BAF /* XCTest.framework */,
 				4B3EB48316E7B5EF00374A8D /* Other Frameworks */,
 				1929BC56908A4AF94B1E7CA0 /* CoreGraphics.framework */,
 			);
@@ -121,6 +177,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		4B12D07019289BC600523BAF /* LookThroughProxy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B12D09D19289BC600523BAF /* Build configuration list for PBXNativeTarget "LookThroughProxy" */;
+			buildPhases = (
+				4B12D06D19289BC600523BAF /* Sources */,
+				4B12D06E19289BC600523BAF /* Frameworks */,
+				4B12D06F19289BC600523BAF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LookThroughProxy;
+			productName = LookThroughProxy;
+			productReference = 4B12D07119289BC600523BAF /* LookThroughProxy.app */;
+			productType = "com.apple.product-type.application";
+		};
 		4B3EB47B16E7B5EF00374A8D /* LookThrough */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B3EB49316E7B5EF00374A8D /* Build configuration list for PBXNativeTarget "LookThrough" */;
@@ -155,6 +228,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 4B3EB47116E7B5EF00374A8D;
 			productRefGroup = 4B3EB47D16E7B5EF00374A8D /* Products */;
@@ -162,11 +236,23 @@
 			projectRoot = "";
 			targets = (
 				4B3EB47B16E7B5EF00374A8D /* LookThrough */,
+				4B12D07019289BC600523BAF /* LookThroughProxy */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4B12D06F19289BC600523BAF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B12D07819289BC600523BAF /* InfoPlist.strings in Resources */,
+				4B12D08619289BC600523BAF /* Images.xcassets in Resources */,
+				4B12D07E19289BC600523BAF /* Credits.rtf in Resources */,
+				4B12D08419289BC600523BAF /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B3EB47916E7B5EF00374A8D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -188,6 +274,16 @@
 /* End PBXRezBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4B12D06D19289BC600523BAF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B12D09F19289C0300523BAF /* LTScreenCaptureHelper.m in Sources */,
+				4B12D08119289BC600523BAF /* AppDelegate.m in Sources */,
+				4B12D07A19289BC600523BAF /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4B3EB47616E7B5EF00374A8D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -200,6 +296,30 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4B12D07619289BC600523BAF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B12D07719289BC600523BAF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4B12D07C19289BC600523BAF /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B12D07D19289BC600523BAF /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		4B12D08219289BC600523BAF /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B12D08319289BC600523BAF /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		4B3EB48A16E7B5EF00374A8D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -211,6 +331,57 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4B12D09919289BC600523BAF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LookThroughProxy/LookThroughProxy-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "LookThroughProxy/LookThroughProxy-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4B12D09A19289BC600523BAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LookThroughProxy/LookThroughProxy-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "LookThroughProxy/LookThroughProxy-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		4B3EB49116E7B5EF00374A8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -301,6 +472,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4B12D09D19289BC600523BAF /* Build configuration list for PBXNativeTarget "LookThroughProxy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B12D09919289BC600523BAF /* Debug */,
+				4B12D09A19289BC600523BAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4B3EB47516E7B5EF00374A8D /* Build configuration list for PBXProject "LookThrough" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
