@@ -43,40 +43,40 @@ static void WindowListApplierFunction(const void *inputDictionary, void *context
 
   // The flags that we pass to CGWindowListCopyWindowInfo will automatically filter out most undesirable windows.
   // However, it is possible that we will get back a window that we cannot read from, so we'll filter those out manually.
-  int sharingState = [[entry objectForKey:(id) kCGWindowSharingState] intValue];
+  int sharingState = [entry[(id) kCGWindowSharingState] intValue];
   if (sharingState != kCGWindowSharingNone) {
     NSMutableDictionary *outputEntry = [NSMutableDictionary dictionary];
 
     // Grab the application name, but since it's optional we need to check before we can use it.
-    NSString *applicationName = [entry objectForKey:(id) kCGWindowOwnerName];
+    NSString *applicationName = entry[(id) kCGWindowOwnerName];
     if (applicationName != NULL) {
       // PID is required so we assume it's present.
-      NSString *nameAndPID = [NSString stringWithFormat:@"%@ (%@)", applicationName, [entry objectForKey:(id) kCGWindowOwnerPID]];
-      [outputEntry setObject:nameAndPID forKey:kAppNameKey];
+      NSString *nameAndPID = [NSString stringWithFormat:@"%@ (%@)", applicationName, entry[(id) kCGWindowOwnerPID]];
+      outputEntry[kAppNameKey] = nameAndPID;
     } else {
       // The application name was not provided, so we use a fake application name to designate this.
       // PID is required so we assume it's present.
-      NSString *nameAndPID = [NSString stringWithFormat:@"((unknown)) (%@)", [entry objectForKey:(id) kCGWindowOwnerPID]];
-      [outputEntry setObject:nameAndPID forKey:kAppNameKey];
+      NSString *nameAndPID = [NSString stringWithFormat:@"((unknown)) (%@)", entry[(id) kCGWindowOwnerPID]];
+      outputEntry[kAppNameKey] = nameAndPID;
     }
 
     // Grab the Window Bounds, it's a dictionary in the array, but we want to display it as a string
     CGRect bounds;
-    CGRectMakeWithDictionaryRepresentation((CFDictionaryRef) [entry objectForKey:(id) kCGWindowBounds], &bounds);
+    CGRectMakeWithDictionaryRepresentation((CFDictionaryRef) entry[(id) kCGWindowBounds], &bounds);
     NSString *originString = [NSString stringWithFormat:@"%.0f/%.0f", bounds.origin.x, bounds.origin.y];
-    [outputEntry setObject:originString forKey:kWindowOriginKey];
+    outputEntry[kWindowOriginKey] = originString;
     NSString *sizeString = [NSString stringWithFormat:@"%.0f*%.0f", bounds.size.width, bounds.size.height];
-    [outputEntry setObject:sizeString forKey:kWindowSizeKey];
+    outputEntry[kWindowSizeKey] = sizeString;
 
     // Grab the Window ID & Window Level. Both are required, so just copy from one to the other
-    [outputEntry setObject:[entry objectForKey:(id) kCGWindowNumber] forKey:kWindowIDKey];
-    [outputEntry setObject:[entry objectForKey:(id) kCGWindowLayer] forKey:kWindowLevelKey];
+    outputEntry[kWindowIDKey] = entry[(id) kCGWindowNumber];
+    outputEntry[kWindowLevelKey] = entry[(id) kCGWindowLayer];
 
     // Finally, we are passed the windows in order from front to back by the window server
     // Should the user sort the window list we want to retain that order so that screen shots
     // look correct no matter what selection they make, or what order the items are in. We do this
     // by maintaining a window order key that we'll apply later.
-    [outputEntry setObject:[NSNumber numberWithInt:data->order] forKey:kWindowOrderKey];
+    outputEntry[kWindowOrderKey] = @(data->order);
     data->order++;
 
     [data->outputArray addObject:outputEntry];
