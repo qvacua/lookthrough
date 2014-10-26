@@ -30,7 +30,7 @@ static NSTimeInterval const qUpdateInterval = 5;
   NSImage *image = [LTScreenCaptureHelper defaultHelper].screenAsImage;
   NSRect screenRect = self.window.screen.frame;
 
-  [image drawAtPoint:dirtyRect.origin fromRect:screenRect operation:NSCompositeSourceOver fraction:1];
+  [image drawInRect:screenRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1];
 }
 
 - (void)animateOneFrame {

@@ -10,13 +10,6 @@
 #import "LTScreenCaptureHelper.h"
 
 
-@implementation AppDelegate {
-  LTScreenCaptureHelper *_helper;
-}
-
-- (IBAction)updateScreenshot:(id)sender {
-  NSImage *image = [LTScreenCaptureHelper defaultHelper].screenAsImage;
-  _imageView.image = image;
-}
+@implementation AppDelegate
 
 @end

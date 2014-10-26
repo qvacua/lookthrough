@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -10,10 +11,9 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
-                <outlet property="imageView" destination="UNO-8P-li9" id="4u9-1A-o6x"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -353,7 +353,7 @@
                         <items>
                             <menuItem title="Update Screenshot" keyEquivalent="1" id="snW-S8-Cw5">
                                 <connections>
-                                    <action selector="updateScreenshot:" target="Voe-Tx-rLC" id="wDS-xv-qXp"/>
+                                    <action selector="updateScreenshot:" target="OoA-hC-9Iz" id="62R-iq-SsO"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -407,13 +407,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="697" height="480"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView id="UNO-8P-li9">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="OoA-hC-9Iz" customClass="ProxyView">
                         <rect key="frame" x="0.0" y="0.0" width="697" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="w0f-4h-7Sy"/>
-                    </imageView>
+                    </customView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="OoA-hC-9Iz" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="KaX-pi-I4S"/>
+                    <constraint firstAttribute="trailing" secondItem="OoA-hC-9Iz" secondAttribute="trailing" id="Z5m-yf-EIr"/>
+                    <constraint firstAttribute="bottom" secondItem="OoA-hC-9Iz" secondAttribute="bottom" id="Z9I-cR-Sci"/>
+                    <constraint firstItem="OoA-hC-9Iz" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="lfI-Ce-WAI"/>
+                </constraints>
             </view>
+            <point key="canvasLocation" x="210.5" y="288"/>
         </window>
     </objects>
 </document>

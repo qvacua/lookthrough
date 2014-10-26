@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1929B1C3CD5B2C8C7630BCD0 /* LTScreenCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929B655E7915B2E05A1DB81 /* LTScreenCaptureHelper.m */; };
+		1929B26AA0AB30B3BB915718 /* ProxyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BEEDE9F4171345433CC2 /* ProxyView.m */; };
 		1929B572D0345EDE9B9385CA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929BC56908A4AF94B1E7CA0 /* CoreGraphics.framework */; };
 		1929BBAD38402196EC88F913 /* LTScreenCaptureHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1929BAAC3C756846D7E9AC58 /* LTScreenCaptureHelper.h */; };
 		4B12D07219289BC600523BAF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3EB47F16E7B5EF00374A8D /* Cocoa.framework */; };
@@ -29,6 +30,8 @@
 		1929B655E7915B2E05A1DB81 /* LTScreenCaptureHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTScreenCaptureHelper.m; sourceTree = "<group>"; };
 		1929BAAC3C756846D7E9AC58 /* LTScreenCaptureHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTScreenCaptureHelper.h; sourceTree = "<group>"; };
 		1929BC56908A4AF94B1E7CA0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1929BEEDE9F4171345433CC2 /* ProxyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProxyView.m; sourceTree = "<group>"; };
+		1929BF3B2124143010D7CCC8 /* ProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProxyView.h; sourceTree = "<group>"; };
 		4B12D07119289BC600523BAF /* LookThroughProxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LookThroughProxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B12D07519289BC600523BAF /* LookThroughProxy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LookThroughProxy-Info.plist"; sourceTree = "<group>"; };
 		4B12D07719289BC600523BAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -84,6 +87,8 @@
 				4B12D08219289BC600523BAF /* MainMenu.xib */,
 				4B12D08519289BC600523BAF /* Images.xcassets */,
 				4B12D07419289BC600523BAF /* Supporting Files */,
+				1929BEEDE9F4171345433CC2 /* ProxyView.m */,
+				1929BF3B2124143010D7CCC8 /* ProxyView.h */,
 			);
 			path = LookThroughProxy;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 				4B12D09F19289C0300523BAF /* LTScreenCaptureHelper.m in Sources */,
 				4B12D08119289BC600523BAF /* AppDelegate.m in Sources */,
 				4B12D07A19289BC600523BAF /* main.m in Sources */,
+				1929B26AA0AB30B3BB915718 /* ProxyView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
