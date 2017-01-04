@@ -26,9 +26,13 @@ static NSTimeInterval const qUpdateInterval = 5;
   return self;
 }
 
+- (BOOL)isOpaque {
+  return YES;
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
   NSImage *image = [LTScreenCaptureHelper defaultHelper].screenAsImage;
-  NSRect screenRect = self.window.screen.frame;
+  NSRect screenRect = self.frame;
 
   [image drawInRect:screenRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1];
 }
