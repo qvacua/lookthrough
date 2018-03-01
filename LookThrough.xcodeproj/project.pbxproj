@@ -11,6 +11,9 @@
 		1929B26AA0AB30B3BB915718 /* ProxyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929BEEDE9F4171345433CC2 /* ProxyView.m */; };
 		1929B572D0345EDE9B9385CA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1929BC56908A4AF94B1E7CA0 /* CoreGraphics.framework */; };
 		1929BBAD38402196EC88F913 /* LTScreenCaptureHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1929BAAC3C756846D7E9AC58 /* LTScreenCaptureHelper.h */; };
+		495E8AAD1E6680600045FB39 /* ConfigureSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495E8AAA1E6680600045FB39 /* ConfigureSheet.xib */; };
+		495E8AAE1E6680600045FB39 /* LTConfigureSheetWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 495E8AAB1E6680600045FB39 /* LTConfigureSheetWindowController.h */; };
+		495E8AAF1E6680600045FB39 /* LTConfigureSheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495E8AAC1E6680600045FB39 /* LTConfigureSheetWindowController.m */; };
 		4B12D07219289BC600523BAF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B3EB47F16E7B5EF00374A8D /* Cocoa.framework */; };
 		4B12D07819289BC600523BAF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B12D07619289BC600523BAF /* InfoPlist.strings */; };
 		4B12D07A19289BC600523BAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B12D07919289BC600523BAF /* main.m */; };
@@ -32,6 +35,9 @@
 		1929BC56908A4AF94B1E7CA0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1929BEEDE9F4171345433CC2 /* ProxyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProxyView.m; sourceTree = "<group>"; };
 		1929BF3B2124143010D7CCC8 /* ProxyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProxyView.h; sourceTree = "<group>"; };
+		495E8AAA1E6680600045FB39 /* ConfigureSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigureSheet.xib; sourceTree = "<group>"; };
+		495E8AAB1E6680600045FB39 /* LTConfigureSheetWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTConfigureSheetWindowController.h; sourceTree = "<group>"; };
+		495E8AAC1E6680600045FB39 /* LTConfigureSheetWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTConfigureSheetWindowController.m; sourceTree = "<group>"; };
 		4B12D07119289BC600523BAF /* LookThroughProxy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LookThroughProxy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B12D07519289BC600523BAF /* LookThroughProxy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LookThroughProxy-Info.plist"; sourceTree = "<group>"; };
 		4B12D07719289BC600523BAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -113,7 +119,10 @@
 				4B3EB47E16E7B5EF00374A8D /* Frameworks */,
 				4B3EB47D16E7B5EF00374A8D /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
 		};
 		4B3EB47D16E7B5EF00374A8D /* Products */ = {
 			isa = PBXGroup;
@@ -151,9 +160,12 @@
 			children = (
 				4B3EB48E16E7B5EF00374A8D /* LTScreenSaverView.h */,
 				4B3EB48F16E7B5EF00374A8D /* LTScreenSaverView.m */,
-				4B3EB48816E7B5EF00374A8D /* Supporting Files */,
 				1929B655E7915B2E05A1DB81 /* LTScreenCaptureHelper.m */,
 				1929BAAC3C756846D7E9AC58 /* LTScreenCaptureHelper.h */,
+				495E8AAB1E6680600045FB39 /* LTConfigureSheetWindowController.h */,
+				495E8AAC1E6680600045FB39 /* LTConfigureSheetWindowController.m */,
+				495E8AAA1E6680600045FB39 /* ConfigureSheet.xib */,
+				4B3EB48816E7B5EF00374A8D /* Supporting Files */,
 			);
 			path = LookThrough;
 			sourceTree = "<group>";
@@ -176,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1929BBAD38402196EC88F913 /* LTScreenCaptureHelper.h in Headers */,
+				495E8AAE1E6680600045FB39 /* LTConfigureSheetWindowController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +220,6 @@
 				4B3EB47716E7B5EF00374A8D /* Frameworks */,
 				4B3EB47816E7B5EF00374A8D /* Headers */,
 				4B3EB47916E7B5EF00374A8D /* Resources */,
-				4B3EB47A16E7B5EF00374A8D /* Rez */,
 			);
 			buildRules = (
 			);
@@ -224,7 +236,7 @@
 		4B3EB47216E7B5EF00374A8D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Tae Won Ha";
 			};
 			buildConfigurationList = 4B3EB47516E7B5EF00374A8D /* Build configuration list for PBXProject "LookThrough" */;
@@ -262,21 +274,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495E8AAD1E6680600045FB39 /* ConfigureSheet.xib in Resources */,
 				4B3EB48C16E7B5EF00374A8D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXRezBuildPhase section */
-		4B3EB47A16E7B5EF00374A8D /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXRezBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4B12D06D19289BC600523BAF /* Sources */ = {
@@ -295,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B3EB49016E7B5EF00374A8D /* LTScreenSaverView.m in Sources */,
+				495E8AAF1E6680600045FB39 /* LTConfigureSheetWindowController.m in Sources */,
 				1929B1C3CD5B2C8C7630BCD0 /* LTScreenCaptureHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,6 +363,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "LookThroughProxy/LookThroughProxy-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qvacua.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -383,6 +388,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "LookThroughProxy/LookThroughProxy-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qvacua.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -392,19 +398,33 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -413,7 +433,9 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -426,22 +448,37 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
@@ -452,11 +489,13 @@
 		4B3EB49416E7B5EF00374A8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LookThrough/LookThrough-Prefix.pch";
 				INFOPLIST_FILE = "LookThrough/LookThrough-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qvacua.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = saver;
 			};
@@ -465,11 +504,13 @@
 		4B3EB49516E7B5EF00374A8D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LookThrough/LookThrough-Prefix.pch";
 				INFOPLIST_FILE = "LookThrough/LookThrough-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.qvacua.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = saver;
 			};

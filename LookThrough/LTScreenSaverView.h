@@ -8,7 +8,10 @@
 
 #import <ScreenSaver/ScreenSaver.h>
 
+@class LTConfigureSheetWindowController;
 
-@interface LTScreenSaverView : ScreenSaverView
-
+@interface LTScreenSaverView : ScreenSaverView {
+  LTConfigureSheetWindowController *configureSheetWindowController;
+}
+- (void)updateAnimationInterval;
 @end

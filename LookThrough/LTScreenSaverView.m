@@ -8,10 +8,9 @@
 
 #import "LTScreenSaverView.h"
 #import "LTScreenCaptureHelper.h"
+#import "LTConfigureSheetWindowController.h"
 
-
-static NSTimeInterval const qUpdateInterval = 5;
-
+NSTimeInterval qUpdateInterval = 5;
 
 @implementation LTScreenSaverView
 
@@ -20,20 +19,46 @@ static NSTimeInterval const qUpdateInterval = 5;
   if (!self) {
     return nil;
   }
-
-  self.animationTimeInterval = qUpdateInterval;
-
+  
+  [self updateAnimationInterval];
+  
   return self;
+}
+
+- (void)updateAnimationInterval {
+  NSNumber *updateInterval = [[ScreenSaverDefaults defaultsForModuleWithName:[[NSBundle bundleForClass: self.class] bundleIdentifier]] objectForKey:@"updateInterval"];
+  if (updateInterval) {
+    qUpdateInterval = [updateInterval doubleValue];
+  } else {
+    qUpdateInterval = 5;
+  }
+  self.animationTimeInterval = qUpdateInterval;
+}
+
++ (BOOL)performGammaFade {
+  return [[ScreenSaverDefaults defaultsForModuleWithName:[[NSBundle bundleForClass: self.class] bundleIdentifier]] boolForKey:@"fade"];
 }
 
 - (BOOL)isOpaque {
   return YES;
 }
 
+- (BOOL)hasConfigureSheet {
+  return YES;
+}
+
+- (NSWindow *)configureSheet {
+  if (!configureSheetWindowController) {
+    configureSheetWindowController = [[LTConfigureSheetWindowController alloc] initWithWindowNibName:@"ConfigureSheet"];
+    configureSheetWindowController.screenSaverView = self;
+  }
+  return configureSheetWindowController.window;
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
   NSImage *image = [LTScreenCaptureHelper defaultHelper].screenAsImage;
   NSRect screenRect = self.frame;
-
+  
   [image drawInRect:screenRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1];
 }
 
